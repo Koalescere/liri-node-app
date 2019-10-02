@@ -4,7 +4,7 @@ var keys = require("./keys.js");
 
 var Twitter = require("twitter");
 
-var request = require('request');
+var request = require("request");
 
 var Spotify = require("node-spotify-api");
 
@@ -14,9 +14,9 @@ var getMyTweets = function (){
     var client = new Twitter(keys.twitterKeys);
 
     var params = {screen_name:  "Koalescere@GavinMa95613931"};
-    client.get('statuses/user_timeline', params, function(error, tweets, response) {
+    client.get('statuses/user_timeline', function(error, tweets, response) {
         if (!error) {
-        //   console.log(tweets);
+           console.log(tweets);
             for(var i=0; i<tweets.length; i++) {
                 console.log(tweets[i].created_at);
                 console.log("");
