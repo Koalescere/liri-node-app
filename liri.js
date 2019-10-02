@@ -17,7 +17,7 @@ var getMyTweets = function (){
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
         //   console.log(tweets);
-            for(var i=0; i-tweets.length; i++) {
+            for(var i=0; i<tweets.length; i++) {
                 console.log(tweets[i].created_at);
                 console.log("");
                 console.log(tweets[i].text);
@@ -31,8 +31,8 @@ var getMeMovie = function (movieName) {
         if (!error && response.statusCode == 200){  
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        // console.log('body:', body) // Print the HTML for the Google homepage.
-        console.log("Title: " + jsonData.Title);
+        console.log('body:', body) // Print the HTML for the Google homepage.
+        console.log("Title: " + data.Title);
         // console.log("Year: " + body.Year);
         // console.log("IMDB Rating: " + body.imdbRating);
         // // console.log("Rotten Tomatoes Rating: " + body.Ratings.Source[1].value);
@@ -68,16 +68,16 @@ var getMeSpotify =function (songName){
   });
 }
 var doWhatItSays = function (){
-fs.readFile("random.txt", function (err, data) {
-    if (err) throw err;
-    //console.log(data);
-    var dataArr = data.split(",");
-    if (dataArr.length ==2){
-        pick(dataArr[0], dataArr[1]);
-    } else if (dataArr.length ==1) {
-        pick(dataArr[0]);
-    }
-});
+    fs.readFile("./random.txt", function (err, data) {
+        if (err) throw err;
+        //console.log(data);
+        var dataArr = data.split(",");
+        if (dataArr.length ==2){
+            pick(dataArr[0], dataArr[1]);
+        } else if (dataArr.length ==1) {
+            pick(dataArr[0]);
+        }
+    });
 }
 var pick = function(caseData, functionData) {
     switch(caseData) {
@@ -102,12 +102,3 @@ var runThis = function(argOne, argTwo) {
 
 runThis(process.argv[2], process.argv[3]);
 
-
-// You should then be able to access your keys information like so
-// var spotify = new Spotify(keys.spotify);
-
-// Make it so liri.js can take in one of the following commands:
-// concert-this
-// spotify-this-song
-// movie-this
-// do-what-it-says
